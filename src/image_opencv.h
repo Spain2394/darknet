@@ -48,8 +48,8 @@ void release_mat(mat_cv **mat);
 
 image mat_to_image_cv(mat_cv *mat);
 
-image mat_to_image1(mat_cv m);
-image* mat_to_image2(mat_cv m, image* im);
+// image mat_to_image1(mat_cv m);
+// image* mat_to_image2(mat_cv m, image* im);
 
 // Window
 void create_window_cv(char const* window_name, int full_screen, int width, int height);
