@@ -94,7 +94,7 @@ extern "C" {
 // ====================================================================
     image mat_to_image(cv::Mat mat);
     cv::Mat image_to_mat(image img);
-    cv::Mat image_to_mat_cv(image img);
+    // image mat_to_image_cv(cv::Mat *mat);
 //    image ipl_to_image(mat_cv* src);
 //    mat_cv *image_to_ipl(image img);
 //    cv::Mat ipl_to_mat(IplImage *ipl);
