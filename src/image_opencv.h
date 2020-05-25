@@ -44,6 +44,8 @@ void release_mat(mat_cv **mat);
 // Mat image_to_mat(image img)
 // image mat_to_image(cv::Mat mat)
 image mat_to_image_cv(mat_cv *mat);
+// image* mat_to_image2(mat_cv m, image* im);
+
 
 // Window
 void create_window_cv(char const* window_name, int full_screen, int width, int height);
