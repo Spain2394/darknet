@@ -42,8 +42,9 @@ void release_mat(mat_cv **mat);
 // cv::Mat ipl_to_mat(IplImage *ipl)
 // IplImage *mat_to_ipl(cv::Mat mat)
 // Mat image_to_mat(image img)
-// image mat_to_image(cv::Mat mat)
+// image mat_to_image(mat_cv mat);
 image mat_to_image_cv(mat_cv *mat);
+
 // image* mat_to_image2(mat_cv m, image* im);
 
 

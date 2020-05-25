@@ -90,13 +90,8 @@ extern "C" {
 // ====================================================================
 // cv::Mat
 // ====================================================================
-    
     image mat_to_image(cv::Mat mat);
-
-    // image* mat_to_image2(cv::Mat mat, image* img);
-    // image mat_to_image(cv::Mat m)
     cv::Mat image_to_mat(image img);
-
 //    image ipl_to_image(mat_cv* src);
 //    mat_cv *image_to_ipl(image img);
 //    cv::Mat ipl_to_mat(IplImage *ipl);
@@ -170,7 +165,6 @@ extern "C" image load_image_cv(char *filename, int channels)
     }
     return mat_to_image(mat);
 }
-
 // ----------------------------------------
 
 extern "C" image load_image_resize(char *filename, int w, int h, int c, image *im)
@@ -328,27 +322,6 @@ extern "C" cv::Mat image_to_mat(image img)
         }
     }
     return mat;
-}
-
-extern "C" image* mat_to_image2(cv::Mat m, image* im)
-{
-    int h = m.rows;
-    int w = m.cols;
-    int c = m.channels();
-    unsigned char *data = (unsigned char *)m.data;
-    int step = m.step;
-
-    for (int i=0; i< h; ++i)
-    {
-        for(int k=0;k<c;++k)
-        {
-            for(int j=0; j<w;++j)
-            {
-                im->data[k*w*h + i*w + j] = data[i*step + j*c + k]/255.;
-            }
-        }
-    }
-    return im;
 }
 // ----------------------------------------
 
