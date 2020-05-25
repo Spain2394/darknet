@@ -42,7 +42,7 @@ void release_mat(mat_cv **mat);
 // cv::Mat ipl_to_mat(IplImage *ipl)
 // IplImage *mat_to_ipl(cv::Mat mat)
 // Mat image_to_mat(image img)
-// image mat_to_image(mat_cv mat);
+image mat_to_image(mat_cv mat);
 image mat_to_image_cv(mat_cv *mat);
 
 // image* mat_to_image2(mat_cv m, image* im);
@@ -58,6 +58,9 @@ void show_image_cv(image p, const char *name);
 //void show_image_cv_ipl(mat_cv *disp, const char *name);
 void show_image_mat(mat_cv *mat_ptr, const char *name);
 
+// added for to support wait time
+int show_image_time(image im, const char* name, int ms);
+
 // Video Writer
 write_cv *create_video_writer(char *out_filename, char c1, char c2, char c3, char c4, int fps, int width, int height, int is_color);
 void write_frame_cv(write_cv *output_video_writer, mat_cv *mat);
@@ -67,7 +70,6 @@ void release_video_writer(write_cv **output_video_writer);
 //void *open_video_stream(const char *f, int c, int w, int h, int fps);
 //image get_image_from_stream(void *p);
 //image load_image_cv(char *filename, int channels);
-int show_image_cv(image im, const char* name, int ms);
 
 // Video Capture
 cap_cv* get_capture_video_stream(const char *path);
