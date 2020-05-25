@@ -184,7 +184,7 @@ extern "C" image mat_to_image(Mat m, image* im)
             }
         }
     }
-
+    return im;
 }
 
 
