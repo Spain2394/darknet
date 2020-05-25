@@ -165,6 +165,32 @@ extern "C" image load_image_cv(char *filename, int channels)
     }
     return mat_to_image(mat);
 }
+
+extern "C" image mat_to_image(Mat m, image* im)
+{
+    int h = m.rows;
+    int w = m.cols;
+    int c = m.channels();
+    unsigned char *data = (unsigned char *)m.data;
+    int step = m.step;
+
+    for (int i=0; i< h; ++i)
+    {
+        for(int k=0;k<c;++k)
+        {
+            for(int j=0; j<w;++j)
+            {
+                im->data[k*w*h + i*w + j] = data[i*step + j*c + k]/255.;
+            }
+        }
+    }
+
+}
+
+
+
+
+
 // ----------------------------------------
 
 extern "C" image load_image_resize(char *filename, int w, int h, int c, image *im)
