@@ -354,38 +354,39 @@ image mat_to_image_cv(mat_cv *mat)
     return mat_to_image(*(cv::Mat*)mat);
 }
 
+// New conversion function
+extern "C" image mat_to_image1(cv::Mat mat)
+{
+    int h = m.rows;
+    int w = m.cols;
+    int c = m.channels();
+    image im = make_image(w, h, c);
+    return *mat_to_image2(m, &im);
 
-// // New conversion function
-// extern "C" image mat_to_image1(cv::Mat mat)
-// {
-//     int h 
-// }
+}
 
+// takes an image pointer and returns a copy of that image 
+extern "C" image mat_to_image2(cv::Mat mat, image* im)
+{
+    int w = mat.cols;
+    int h = mat.rows;
+    int c = mat.channels();
+    image im = make_image(w, h, c);
+    unsigned char *data = (unsigned char *)mat.data;
+    int step = mat.step;
+    for (int y = 0; y < h; ++y) {
+        for (int k = 0; k < c; ++k) {
+            for (int x = 0; x < w; ++x) {
+                //uint8_t val = mat.ptr<uint8_t>(y)[c * x + k];
+                //uint8_t val = mat.at<Vec3b>(y, x).val[k];
+                //im.data[k*w*h + y*w + x] = val / 255.0f;
 
-
-
-// // takes an image pointer and returns a copy of that image
-// extern "C" image mat_to_image2(cv::Mat mat, image* im)
-// {
-//     int w = mat.cols;
-//     int h = mat.rows;
-//     int c = mat.channels();
-//     image im = make_image(w, h, c);
-//     unsigned char *data = (unsigned char *)mat.data;
-//     int step = mat.step;
-//     for (int y = 0; y < h; ++y) {
-//         for (int k = 0; k < c; ++k) {
-//             for (int x = 0; x < w; ++x) {
-//                 //uint8_t val = mat.ptr<uint8_t>(y)[c * x + k];
-//                 //uint8_t val = mat.at<Vec3b>(y, x).val[k];
-//                 //im.data[k*w*h + y*w + x] = val / 255.0f;
-
-//                 im.data[k*w*h + y*w + x] = data[y*step + x*c + k] / 255.0f;
-//             }
-//         }
-//     }
-//     return im;
-// }
+                im.data[k*w*h + y*w + x] = data[y*step + x*c + k] / 255.0f;
+            }
+        }
+    }
+    return im;
+}
 
 // ====================================================================
 // Window
@@ -562,6 +563,10 @@ extern "C" void release_video_writer(write_cv **output_video_writer)
         cerr << "OpenCV exception: release_video_writer \n";
     }
 }
+
+
+
+extern "C" void *
 
 /*
 extern "C" void *open_video_stream(const char *f, int c, int w, int h, int fps)
