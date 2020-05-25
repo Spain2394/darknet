@@ -42,7 +42,9 @@ void release_mat(mat_cv **mat);
 // cv::Mat ipl_to_mat(IplImage *ipl)
 // IplImage *mat_to_ipl(cv::Mat mat)
 // Mat image_to_mat(image img)
-image mat_to_image(mat_cv mat);
+
+// defined in the h file but not in the source code
+// image mat_to_image(cv::Mat mat);
 image mat_to_image_cv(mat_cv *mat);
 
 // image* mat_to_image2(mat_cv m, image* im);
@@ -70,6 +72,7 @@ void release_video_writer(write_cv **output_video_writer);
 //void *open_video_stream(const char *f, int c, int w, int h, int fps);
 //image get_image_from_stream(void *p);
 //image load_image_cv(char *filename, int channels);
+// int show_image_cv(image im, const char* name, int ms);
 
 // Video Capture
 cap_cv* get_capture_video_stream(const char *path);
