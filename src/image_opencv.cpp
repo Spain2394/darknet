@@ -550,17 +550,16 @@ extern "C" image get_image_from_stream(void *p)
     if(m.empty()) return make_empty_image(0,0,0);
     return mat_to_image(m);
 }
-
-extern "C" int show_image_cv(image im, const char* name, int ms)
-{
-    Mat m = image_to_mat(im);
-    imshow(name, m);
-    int c = waitKey(ms);
-    if (c != -1) c = c%256;
-    return c;
-}
 */
 
+// extern "C" int show_image_cv(image im, const char* name, int ms)
+// {
+//     Mat m = image_to_mat(im);
+//     imshow(name, m);
+//     int c = waitKey(ms);
+//     if (c != -1) c = c%256;
+//     return c;
+// }
 
 // ====================================================================
 // Video Capture
