@@ -9,11 +9,19 @@ extern "C" {
 #endif
 
 #ifdef OPENCV
+// #include <opencv2/core.hpp>
+// declare som cpp functions
+
 
 // declaration
 typedef void* mat_cv;
 typedef void* cap_cv;
 typedef void* write_cv;
+
+
+// New functions here
+// image mat_to_image_baseball(mat_cv m);
+// image* mat_to_image_basketball(mat_cv m, image* im);
 
 //typedef struct mat_cv mat_cv;
 //typedef struct cap_cv cap_cv;
@@ -45,11 +53,13 @@ void release_mat(mat_cv **mat);
 
 // defined in the h file but not in the source code
 // image mat_to_image(cv::Mat mat);
-
-image mat_to_image_cv(mat_cv *mat);
+image* mat_to_image_basketball_cv(mat_cv *m, image* im);
 
 // image mat_to_image1(mat_cv m);
 // image* mat_to_image2(mat_cv m, image* im);
+// OLD 
+image mat_to_image_cv(mat_cv *mat);
+
 
 // Window
 void create_window_cv(char const* window_name, int full_screen, int width, int height);

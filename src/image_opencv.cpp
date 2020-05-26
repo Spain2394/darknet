@@ -94,11 +94,48 @@ extern "C" {
 // ====================================================================
     image mat_to_image(cv::Mat mat);
     cv::Mat image_to_mat(image img);
+    image* mat_to_image_basketball(cv::Mat m, image* im);
     // image mat_to_image_cv(cv::Mat *mat);
 //    image ipl_to_image(mat_cv* src);
 //    mat_cv *image_to_ipl(image img);
 //    cv::Mat ipl_to_mat(IplImage *ipl);
 //    IplImage *mat_to_ipl(cv::Mat mat);
+
+    // image mat_to_image_baseball(cv::Mat m)
+    // {
+    //     int h = m.rows;
+    //     int w = m.cols;
+    //     int c = m.channels();
+    //     image im = make_image(w, h, c);
+    //     return *mat_to_image_basketball(m, &im);
+    // }
+
+extern  "C" image* mat_to_image_basketball(cv::Mat m, image* im)
+{
+        // m.type() assumed to be CV8UCX, 0 <= X < 3
+        // modify the data at image 
+        int h = m.rows;
+        int w = m.cols;
+        int c = m.channels();
+        unsigned char *data = (unsigned char *)m.data;
+        int step = m.step;
+
+        for(int i = 0; i < h; ++i){
+            for(int k= 0; k < c; ++k){
+                for(int j = 0; j < w; ++j){
+                    im->data[k*w*h + i*w + j] = data[i*step + j*c + k]/255.;
+                }
+            }
+        }
+        return im;
+}
+image* mat_to_image_basketball_cv(mat_cv *m, image* im)
+{  
+    // return mat_to_image(*(cv::Mat*)mat);
+    return mat_to_image_basketball((*(cv::Mat*)m), im); // dereference mat
+    // return mat_to_image_basketball( (*(cv::Mat*)m), im); // dereference mat
+    // return *((cv::Mat)m)
+}
 
 
 extern "C" mat_cv *load_image_mat_cv(const char *filename, int flag)
