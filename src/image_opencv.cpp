@@ -95,6 +95,7 @@ extern "C" {
     image mat_to_image(cv::Mat mat);
     cv::Mat image_to_mat(image img);
     image* mat_to_image_basketball(cv::Mat m, image* im);
+    image mat_to_image_football(cv::Mat m);
     // image mat_to_image_cv(cv::Mat *mat);
 //    image ipl_to_image(mat_cv* src);
 //    mat_cv *image_to_ipl(image img);
@@ -125,7 +126,8 @@ extern  "C" image mat_to_image_football(cv::Mat m)
 
 image mat_to_image_football_cv(mat_cv *m)
 {
-    return mat_to_image_football((*(cv::Mat*)m)); 
+    return mat_to_image_football(*(cv::Mat*)m); 
+    // return mat_to_image_basketball((*(cv::Mat*)m), im); // dereference mat
 }
 
 
