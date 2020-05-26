@@ -53,8 +53,8 @@ void release_mat(mat_cv **mat);
 
 // defined in the h file but not in the source code
 // image mat_to_image(cv::Mat mat);
-image* mat_to_image_basketball_cv(mat_cv *m, image* im);
-image mat_to_image_football_cv(mat_cv *m);
+image* mat_to_image_basketball_cv(mat_cv m, image* im);
+image mat_to_image_football_cv(mat_cv m);
 
 // image mat_to_image1(mat_cv m);
 // image* mat_to_image2(mat_cv m, image* im);
