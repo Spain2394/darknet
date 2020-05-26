@@ -110,6 +110,25 @@ extern "C" {
     //     return *mat_to_image_basketball(m, &im);
     // }
 
+
+extern  "C" image mat_to_image_football(cv::Mat m)
+{
+        // m.type() assumed to be CV8UCX, 0 <= X < 3
+        // modify the data at image 
+        int h = m.rows;
+        int w = m.cols;
+        int c = m.channels();
+
+        image im = make_image(w,c,h);
+        return *mat_to_image_basketball(m, &im);
+}
+
+image mat_to_image_football_cv(mat_cv *m)
+{
+    return mat_to_image_football((*(cv::Mat*)m)); 
+}
+
+
 extern  "C" image* mat_to_image_basketball(cv::Mat m, image* im)
 {
         // m.type() assumed to be CV8UCX, 0 <= X < 3
@@ -129,6 +148,8 @@ extern  "C" image* mat_to_image_basketball(cv::Mat m, image* im)
         }
         return im;
 }
+
+
 image* mat_to_image_basketball_cv(mat_cv *m, image* im)
 {  
     // return mat_to_image(*(cv::Mat*)mat);
@@ -136,6 +157,8 @@ image* mat_to_image_basketball_cv(mat_cv *m, image* im)
     // return mat_to_image_basketball( (*(cv::Mat*)m), im); // dereference mat
     // return *((cv::Mat)m)
 }
+
+
 
 
 extern "C" mat_cv *load_image_mat_cv(const char *filename, int flag)
